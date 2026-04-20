@@ -50,7 +50,7 @@ public class Menu {
         System.out.println("2. Add employee");
         System.out.println("3. Delete employee");
         System.out.println("4. Find employee by ID");
-        System.out.println("5. Show statistics (avg salary + top manager)");
+        System.out.println("5. Show statistics");
         System.out.println("6. Filter employees by position");
         System.out.println("7. Show employees sorted by hire date");
         System.out.println("8. Save to CSV file");

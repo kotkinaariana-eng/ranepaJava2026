@@ -20,9 +20,7 @@ public class HrmApplication {
 
     private static void addTestEmployees(EmployeeRepository repository) {
         repository.save(new Employee(null, "Ariana", "manager",
-                BigDecimal.valueOf(58000), LocalDate.of(2006, 9, 24)));
+                BigDecimal.valueOf(300000), LocalDate.of(2006, 9, 24)));
 
-        repository.save(new Employee(null, "Masha", "statistician",
-                BigDecimal.valueOf(23000), LocalDate.of(2005, 12, 31)));
     }
 }
