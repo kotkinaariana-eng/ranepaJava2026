@@ -2,32 +2,53 @@ package ru.ranepa.repository;
 
 import ru.ranepa.model.Employee;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class EmployeeRepository {
-    private final Map<Long, Employee> storage = new HashMap<>();
-    private long currentId = 1;
+    private final Map<Long, Employee> employees = new HashMap<>();
+    private long nextId = 1;
+    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     public Employee save(Employee employee) {
         if (employee.getId() == null) {
-            employee.setId(currentId++);
+            employee.setId(nextId++);
         }
-        storage.put(employee.getId(), employee);
+        employees.put(employee.getId(), employee);
         return employee;
     }
 
     public List<Employee> findAll() {
-        return new ArrayList<>(storage.values());
+        return new ArrayList<>(employees.values());
     }
 
-    public Employee findById(Long id) {
-        return storage.get(id);
+    public Optional<Employee> findById(Long id) {
+        return Optional.ofNullable(employees.get(id));
     }
 
     public boolean delete(Long id) {
-        return storage.remove(id) != null;
+        if (!employees.containsKey(id)) {
+            return false;
+        }
+        employees.remove(id);
+        return true;
+    }
+
+    public void saveToFile(String filename) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
+            writer.println("ID,Name,Position,Salary,HireDate");
+            for (Employee emp : employees.values()) {
+                writer.printf("%d,%s,%s,%.2f,%s%n",
+                        emp.getId(),
+                        emp.getName(),
+                        emp.getPosition(),
+                        emp.getSalary(),
+                        emp.getHireDate().format(dateFormatter));
+            }
+            System.out.println("Data successfully saved to file: " + filename);
+        } catch (IOException e) {
+            System.out.println("Error saving to file: " + e.getMessage());
+        }
     }
 }

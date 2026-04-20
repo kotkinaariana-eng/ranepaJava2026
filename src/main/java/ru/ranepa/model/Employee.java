@@ -1,18 +1,17 @@
 package ru.ranepa.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Employee {
     private Long id;
     private String name;
     private String position;
-    private double salary;
+    private BigDecimal salary;
     private LocalDate hireDate;
 
-    public Employee() {
-    }
-
-    public Employee(Long id, String name, String position, double salary, LocalDate hireDate) {
+    public Employee(Long id, String name, String position, BigDecimal salary, LocalDate hireDate) {
         this.id = id;
         this.name = name;
         this.position = position;
@@ -20,47 +19,21 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    // Геттеры
-    public Long getId() {
-        return id;
-    }
+    // Геттеры и сеттеры
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getPosition() {
-        return position;
-    }
+    public String getPosition() { return position; }
+    public void setPosition(String position) { this.position = position; }
 
-    public double getSalary() {
-        return salary;
-    }
+    public BigDecimal getSalary() { return salary; }
+    public void setSalary(BigDecimal salary) { this.salary = salary; }
 
-    public LocalDate getHireDate() {
-        return hireDate;
-    }
-
-    // Сеттеры
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
-    }
+    public LocalDate getHireDate() { return hireDate; }
+    public void setHireDate(LocalDate hireDate) { this.hireDate = hireDate; }
 
     @Override
     public String toString() {
