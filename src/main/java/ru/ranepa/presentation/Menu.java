@@ -33,13 +33,12 @@ public class Menu {
                 case 5 -> showStatistics();
                 case 6 -> filterByPosition();
                 case 7 -> showEmployeesSortedByDate();
-                case 8 -> saveToFile();
-                case 0 -> {
+                case 8 -> {
                     saveOnExit();
                     System.out.println("Goodbye!");
                     return;
                 }
-                default -> System.out.println("Invalid input. Please choose option from 0 to 8.");
+                default -> System.out.println("Invalid input. Please choose option from 1 to 8.");
             }
         }
     }
@@ -53,8 +52,7 @@ public class Menu {
         System.out.println("5. Show statistics");
         System.out.println("6. Filter employees by position");
         System.out.println("7. Show employees sorted by hire date");
-        System.out.println("8. Save to CSV file");
-        System.out.println("0. Exit");
+        System.out.println("8. Exit");
     }
 
     private void showAllEmployees() {
@@ -185,7 +183,7 @@ public class Menu {
             filename = "employees.csv";
             service.saveToFile(filename);
         } else if (saveChoice == 2) {
-            filename = readStringInput("Enter filename (for example kukushkina.csv): ");
+            filename = readStringInput("Enter filename (for example kotkina.csv): ");
             if (!filename.endsWith(".csv")) {
                 filename += ".csv";
             }
